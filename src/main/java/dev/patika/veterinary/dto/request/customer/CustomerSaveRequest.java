@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerSaveRequest {
 
-    @NotNull
+    @NotNull(message = "Müşteri adı boş veya null olamaz")
     private String name;
 
     private String phone;
