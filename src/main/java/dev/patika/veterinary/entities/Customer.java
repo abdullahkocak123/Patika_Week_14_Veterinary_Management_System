@@ -2,9 +2,12 @@ package dev.patika.veterinary.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jdk.dynalink.linker.LinkerServices;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -33,4 +36,8 @@ public class Customer {
 
     @Column(name = "customer_city")
     private String city;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Animal> animalList;
+
 }

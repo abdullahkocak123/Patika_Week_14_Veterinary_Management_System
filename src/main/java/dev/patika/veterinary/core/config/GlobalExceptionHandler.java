@@ -1,6 +1,9 @@
-package dev.patika.veterinary.core.utils;
+package dev.patika.veterinary.core.config;
 
+import dev.patika.veterinary.core.exception.NotFoundException;
+import dev.patika.veterinary.core.result.Result;
 import dev.patika.veterinary.core.result.ResultData;
+import dev.patika.veterinary.core.utils.ResultHelper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,13 +17,20 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    //custom exception
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Result> handleNotFoundException (NotFoundException e){
+        return new ResponseEntity<>(ResultHelper.notFoundError(e.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    //built-in exception
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResultData<List<String>>> handleValidationErrors(MethodArgumentNotValidException e){
 
         List<String> validationErrorList = e.getBindingResult().getFieldErrors().stream()
                 .map(FieldError::getDefaultMessage).collect(Collectors.toList());
 
-        ResultData<List<String>> resultData = ResultHelper.validateError(validationErrorList);
+        ResultData<List<String>> resultData = ResultHelper.validateErrorData(validationErrorList);
         return new ResponseEntity<>(resultData, HttpStatus.BAD_REQUEST);
     }
 }
