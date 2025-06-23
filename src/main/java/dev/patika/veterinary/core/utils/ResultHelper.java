@@ -25,7 +25,16 @@ public class ResultHelper {
         return new Result(false, msg, "404");
     }
 
-//    public static Result notFoundErrorById (long id){
-//        return new Result(false, id+Msg.NOT_FOUND_BY_ID, "404");
-//    }
+    public static Result alreadyExistsException (String msg){
+        return new Result(false, Msg.ALREADY_EXISTS, "409");
+    }
+
+    public static Result appointmentNotAvailable (String msg){
+        return new Result(false, Msg.APPOINTMENT_NOT_AVAILABLE, "400");
+    }
+
+    public static Result alreadyExistsValidVaccine (String msg){
+        return new Result(false, Msg.ALREADY_EXISTS_VALID_VACCINE, "400");
+    }
+
 }

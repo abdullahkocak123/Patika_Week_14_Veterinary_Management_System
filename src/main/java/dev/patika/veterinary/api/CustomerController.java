@@ -72,4 +72,14 @@ public class CustomerController {
         return ResultHelper.success();
     }
 
+    @GetMapping("/filter-by-name/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResultData<List<CustomerResponse>> filterByName(@PathVariable("name") String name) {
+        List<Customer> filteredCustomers = this.customerService.getByName(name);
+        List<CustomerResponse> responseList = filteredCustomers.stream()
+                .map(customer -> this.modelMapper.forResponse().map(customer, CustomerResponse.class))
+                .toList();
+        return ResultHelper.successData(responseList);
+    }
+
 }

@@ -23,7 +23,7 @@ public class Appointment {
 
     @NotNull
     @Column(name = "appointment_date")
-    private LocalDateTime appointmentDate;
+    private LocalDateTime appointmentDateTime;
 
     @ManyToOne
     @JoinColumn(name = "animal_id")
@@ -32,4 +32,10 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+
+    @Override
+    public String toString() {
+        return "Appointment{id=" + id + ", dateTime=" + appointmentDateTime + "}";
+    }
+
 }

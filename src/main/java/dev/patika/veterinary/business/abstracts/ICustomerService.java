@@ -7,6 +7,7 @@ import java.util.List;
 public interface ICustomerService {
 
     Customer save (Customer customer);
+
     Customer get(long id);
 
     List<Customer> getAll();
@@ -14,5 +15,7 @@ public interface ICustomerService {
     Customer update (Customer customer);
 
     boolean delete (long id);
+
+    List<Customer> getByName(String name);
 
 }

@@ -46,4 +46,10 @@ public class Doctor {
             inverseJoinColumns = @JoinColumn(name = "available_date_id")
     )
     private List<AvailableDate> availableDateList;
+
+    @Override
+    public String toString() {
+        return "Doctor{id=" + id + ", name='" + name + "'}";
+    }
+
 }

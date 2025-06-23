@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,4 +26,6 @@ public class VaccineSaveRequest {
 
     @NotNull(message = "Koruma bitiş tarihi boş olamaz")
     private LocalDate protectionFinishDate;
+
+    private List<Long> animalIdList = new ArrayList<>();
 }

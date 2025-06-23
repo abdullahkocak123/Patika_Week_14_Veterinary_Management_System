@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,9 +23,15 @@ public class AvailableDate {
     private Long id;
 
     @NotNull
-    @Column(name = "available_date")
+    @Column(name = "available_date", unique = true)
     private LocalDate availableDate;
 
     @ManyToMany(mappedBy = "availableDateList")
-    private List<Doctor> doctorList;
+    private List<Doctor> doctorList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "AvailableDate{id=" + id + ", date=" + availableDate + "}";
+    }
+
 }

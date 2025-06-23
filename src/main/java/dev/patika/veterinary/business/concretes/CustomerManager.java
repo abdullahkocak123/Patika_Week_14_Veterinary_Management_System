@@ -1,6 +1,7 @@
 package dev.patika.veterinary.business.concretes;
 
 import dev.patika.veterinary.business.abstracts.ICustomerService;
+import dev.patika.veterinary.core.exception.AlreadyExistsException;
 import dev.patika.veterinary.core.exception.NotFoundException;
 import dev.patika.veterinary.core.utils.Msg;
 import dev.patika.veterinary.dao.CustomerRepo;
@@ -11,8 +12,8 @@ import java.util.List;
 
 @Service
 public class CustomerManager implements ICustomerService {
-    private final CustomerRepo customerRepo;
 
+    private final CustomerRepo customerRepo;
 
     public CustomerManager(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
@@ -20,6 +21,9 @@ public class CustomerManager implements ICustomerService {
 
     @Override
     public Customer save(Customer customer) {
+        if (this.customerRepo.existsByName(customer.getName())){
+            throw new AlreadyExistsException();
+        }
         return this.customerRepo.save(customer);
     }
 
@@ -46,6 +50,11 @@ public class CustomerManager implements ICustomerService {
         Customer customer = this.get(id);
         this.customerRepo.delete(customer);
         return true;
+    }
+
+    @Override
+    public List<Customer> getByName(String name) {
+        return this.customerRepo.findByNameContainingIgnoreCase(name);
     }
 
 }

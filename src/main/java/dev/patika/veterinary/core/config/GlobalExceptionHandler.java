@@ -1,5 +1,8 @@
 package dev.patika.veterinary.core.config;
 
+import dev.patika.veterinary.core.exception.AlreadyExistsException;
+import dev.patika.veterinary.core.exception.AlreadyExistsExceptionValidVaccine;
+import dev.patika.veterinary.core.exception.AppointmentNotAvailable;
 import dev.patika.veterinary.core.exception.NotFoundException;
 import dev.patika.veterinary.core.result.Result;
 import dev.patika.veterinary.core.result.ResultData;
@@ -21,6 +24,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Result> handleNotFoundException (NotFoundException e){
         return new ResponseEntity<>(ResultHelper.notFoundError(e.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<Result> handleAlreadyExistsException (AlreadyExistsException e){
+        return new ResponseEntity<>(ResultHelper.alreadyExistsException(e.getMessage()), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(AppointmentNotAvailable.class)
+    public ResponseEntity<Result> handleAppointmentNotAvailable (AppointmentNotAvailable e){
+        return new ResponseEntity<>(ResultHelper.appointmentNotAvailable(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AlreadyExistsExceptionValidVaccine.class)
+    public ResponseEntity<Result> handleAlreadyExistsValidVaccine (AlreadyExistsExceptionValidVaccine e){
+        return new ResponseEntity<>(ResultHelper.alreadyExistsValidVaccine(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     //built-in exception

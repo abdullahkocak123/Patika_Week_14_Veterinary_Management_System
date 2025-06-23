@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -45,7 +46,7 @@ public class Animal {
     private Customer customer;
 
     @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Appointment> appointmentList;
+    private List<Appointment> appointmentList= new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
@@ -53,6 +54,10 @@ public class Animal {
             joinColumns = @JoinColumn(name = "animal_id"),
             inverseJoinColumns = @JoinColumn(name = "vaccine_id")
     )
-    private List<Vaccine> vaccineList;
+    private List<Vaccine> vaccineList = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Animal{id=" + id + ", name='" + name + "'}";
+    }
 }

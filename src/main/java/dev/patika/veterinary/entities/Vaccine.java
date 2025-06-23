@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -39,6 +40,10 @@ public class Vaccine {
     private LocalDate protectionFinishDate;
 
     @ManyToMany(mappedBy = "vaccineList")
-    private List<Animal> animalList;
+    private List<Animal> animalList = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Vaccine{id=" + id + ", name='" + name + "'}";
+    }
 }
