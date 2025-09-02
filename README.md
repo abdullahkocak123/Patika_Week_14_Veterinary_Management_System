@@ -1,35 +1,35 @@
 # 🐾 Veterinary Management System
 
-Bu proje, veteriner kliniklerinin hayvan sahipleri, hayvanlar, randevular, aşılar ve doktorlar gibi temel verileri yönetmesini sağlayan bir **Spring Boot tabanlı web uygulamasıdır**.
+This project is a Spring Boot–based web application that enables veterinary clinics to manage core data such as pet owners, animals, appointments, vaccines, and doctors.
 
-## 🚀 Özellikler
+## 🚀 Features
 
-- Hayvan sahibi (customer) kayıtları
-- Hayvan (animal) bilgileri yönetimi
-- Veteriner hekim (doctor) kayıtları
-- Aşı (vaccine) planlama ve geçmişi
-- Randevu (appointment) oluşturma
-- Doktorların uygunluk tarihleri
-- Swagger UI ile API dokümantasyonu
+- Pet owner (customer) records
+- Animal information management
+- Veterinarian (doctor) records
+- Vaccine scheduling and history
+- Appointment creation
+- Doctor availability dates
+- API documentation with Swagger UI
 
-## 🛠️ Teknolojiler
+## 🛠️ Technologies
 
 - Java 21
 - Spring Boot 3.x
 - Spring Data JPA
 - Hibernate
-- PostgreSQL (veya H2 opsiyonel)
+- PostgreSQL 
 - Lombok
 - Swagger (Springdoc OpenAPI)
 - Maven
 
 🌐 Swagger UI
-API dokümantasyonuna ulaşmak için:
+To access the API documentation:
 
 http://localhost:8080/swagger-ui.html
 veya
 http://localhost:8080/swagger-ui/index.html
 
-Tüm endpoint'leri burada görüntüleyebilir ve test edebilirsin.
+You can view and test all endpoints here.
 
 
